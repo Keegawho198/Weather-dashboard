@@ -19,7 +19,7 @@ header{
 }
 
 .col-8{
-    border: 1.5px solid black;
+    border: 1px solid black;
 }
 
 .btn-search {
@@ -38,7 +38,6 @@ header{
     color: #fff;
   }
 
-  .cityWeather{
+  .mainCity{
     border: 0.5px solid black;
-
   }

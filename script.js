@@ -1,11 +1,10 @@
 //Api URL = http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={APIKEY}
 //Api key = b15f97422ba66d215ee17499ebc5b83b
-
 //api.openweathermap.org/data/2.5/weather?q=London
 
 var APIKEY = "b15f97422ba66d215ee17499ebc5b83b";
 
-var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=moscow&APPID=" + APIKEY;
+var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=london&units=imperial&APPID=" + APIKEY;
 
 //use AJAX to call weather api
 $.ajax({
@@ -16,8 +15,15 @@ $.ajax({
 
     console.log(response);
 
-  $(".cityWeather").html("<h1>" + response.name + " Weather Details</h1>");
+    // var iconcode = a.weather[0].icon;
+    // var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    // $('#wicon').attr('src', iconurl);
+    // " + response.list[0].weather[0].icon +"
 
+  $(".cityName").html("<h1>" + response.city.name + " Weather Details </h1>");
+  $(".cityTemp").html("<p> Temperature (F): " + response.list[0].main.temp)
+  $(".cityHumid").html("<p> Humidity: " + response.list[0].main.humidity);
+  $(".cityWind").html("<p> Wind Speed: " + response.list[0].wind.speed + " MPH</p>")
   });
 
     // // Here we run our AJAX call to the OpenWeatherMap API
