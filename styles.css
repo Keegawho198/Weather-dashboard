@@ -18,6 +18,10 @@ header{
     background-color: whitesmoke;
 }
 
+.col-8{
+    border: 1.5px solid black;
+}
+
 .btn-search {
     background: #424242;
     border-radius: 0;
@@ -32,4 +36,9 @@ header{
   .btn-search:active, .btn-search:hover {
     background: blue;
     color: #fff;
+  }
+
+  .cityWeather{
+    border: 0.5px solid black;
+
   }
