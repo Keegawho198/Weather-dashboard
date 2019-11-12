@@ -13,12 +13,12 @@ header{
 
 }
 
-.col-4{
+.col-3{
     border: 2px solid black;
     background-color: whitesmoke;
 }
 
-.col-8{
+.col-9{
     border: 1px solid black;
 }
 
@@ -41,3 +41,22 @@ header{
   .mainCity{
     border: 0.5px solid black;
   }
+
+  /* .fiveDayforecast{
+    float: left;
+  } */
+
+  /* .day{
+    background-color: blue;
+    color: white;
+  } */
+
+  .col {
+    background-color: royalblue;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: white;
+    font-size: 12px;
+  }
+
+
