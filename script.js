@@ -6,6 +6,8 @@ var APIKEY = "b15f97422ba66d215ee17499ebc5b83b";
 
 var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=melbourne&units=imperial&APPID=" + APIKEY;
 
+
+
 //use AJAX to call weather api
 $.ajax({
     url: queryURL, method: "Get"
@@ -26,6 +28,8 @@ $.ajax({
     var mm = today.getMonth()+1; 
     var yyyy = today.getFullYear();
 
+    var iconImg = "http:openweathermap.org/img/wn/10d.png";
+
     // var iconcode = a.weather[0].icon;
     // var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
     // $('#wicon').attr('src', iconurl);
@@ -33,7 +37,7 @@ $.ajax({
 
     //main data for the main city
     //$(".cityName").html("<h1>" + response.city.name + " Weather Details (" + dd + "/" + mm + "/" + yyyy + ")</h1>");
-    $(".cityName").html("<h1>" + response.city.name + response.list[0].dt_txt);
+    $(".cityName").html("<h1>" + response.city.name + response.list[0].dt_txt + "<img src =" + iconImg + ">");
 
     $(".cityTemp").html("<p> Temperature (F): " + response.list[0].main.temp +"°")
     $(".cityHumid").html("<p> Humidity: " + response.list[0].main.humidity + "%");
@@ -51,3 +55,4 @@ $.ajax({
   // how do we get the date, cuz when i try to use the 5 day forecast, it does it for every 3 hours
   // do we still use that or do we need to use something else?
   //
+  //is the way how I have done the dates okay?
