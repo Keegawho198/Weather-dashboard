@@ -39,7 +39,8 @@ header{
   }
 
   .mainCity{
-    border: 0.5px solid black;
+    /* border: 0.5px solid black; */
+    box-shadow: 0.1px 0.1px 0.5px 0.2px
   }
 
   /* .fiveDayforecast{

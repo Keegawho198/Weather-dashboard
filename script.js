@@ -6,7 +6,7 @@ var APIKEY = "b15f97422ba66d215ee17499ebc5b83b";
 
 var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=melbourne&units=imperial&APPID=" + APIKEY;
 
-
+var queryURL_UV = "http://api.openweathermap.org/data/2.5/uvi?appid="+ APIKEY +"&lat=-37.8143&lon=144.9632";
 
 //use AJAX to call weather api
 $.ajax({
@@ -29,6 +29,7 @@ $.ajax({
     var yyyy = today.getFullYear();
 
     var iconImg = "http:openweathermap.org/img/wn/10d.png";
+    //var iconCode = "03d";
 
     // var iconcode = a.weather[0].icon;
     // var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
@@ -37,19 +38,49 @@ $.ajax({
 
     //main data for the main city
     //$(".cityName").html("<h1>" + response.city.name + " Weather Details (" + dd + "/" + mm + "/" + yyyy + ")</h1>");
-    $(".cityName").html("<h1>" + response.city.name + response.list[0].dt_txt + "<img src =" + iconImg + ">");
+    $(".cityName").html("<h1>" + response.city.name + response.list[1].dt_txt + "<img src =" + iconImg + ">");
 
-    $(".cityTemp").html("<p> Temperature (F): " + response.list[0].main.temp +"°")
-    $(".cityHumid").html("<p> Humidity: " + response.list[0].main.humidity + "%");
-    $(".cityWind").html("<p> Wind Speed: " + response.list[0].wind.speed + " MPH</p>")
+    $(".cityTemp").html("<p> Temperature (F): " + response.list[1].main.temp +"°")
+    $(".cityHumid").html("<p> Humidity: " + response.list[1].main.humidity + "%");
+    $(".cityWind").html("<p> Wind Speed: " + response.list[1].wind.speed + " MPH</p>")
 
 
     //dates for the five day forecase
+    //each list array is for the different days as this api does the weather for every 3 hours
+    //in this case every day is for every 12pm
     $("#day1").html("<h5>" + dd1 + "/" + mm + "/" + yyyy);
-    $("#firstDayTemp").html("<p> Temperature (F): " + response.list[1].main.temp + "° <p/>");
-    $("#firstDayHumid").html("<p> Humidity: " + response.list[1].main.temp + "%");
+    $("#firstDayTemp").html("<p>Temperature (F): " + response.list[9].main.temp + "° </p>");
+    $("#firstDayHumid").html("<p>Humidity: " + response.list[9].main.humidity + "%");
 
+    $("#day2").html("<h5>" +dd2+ "/" +mm+ "/" + yyyy);
+    $("#secondDayTemp").html("<p>Temperature (F): " + response.list[17].main.temp + "° </p>");
+    $("#secondDayHumid").html("<p>Humidity: " + response.list[17].main.humidity+ "%");
+
+    $("#day3").html("<h5>" +dd3+ "/" +mm+ "/" + yyyy);
+    $("#thirdDayTemp").html("<p>Temperature (F): " + response.list[25].main.temp + "° </p>");
+    $("#thirdDayHumid").html("<p>Humidity: " + response.list[25].main.humidity+ "%");
+
+    $("#day4").html("<h5>" +dd4+ "/" +mm+ "/" + yyyy);
+    $("#fourthDayTemp").html("<p>Temperature (F): " + response.list[33].main.temp + "° </p>");
+    $("#fourthDayHumid").html("<p>Humid: " +response.list[33].main.humidity+ "%");
+
+    $("#day5").html("<h5>" +dd5+ "/" +mm+ "/" + yyyy);
+    $("#fifthDayTemp").html("<p>Temperature (F): " + response.list[39].main.temp + "° </p>");
+    $("#fifthDayHumid").html("<p>Humid: " +response.list[39].main.humidity+ "%");
   });
+
+
+  $.ajax({
+    url: queryURL_UV, method: "Get"
+  })
+  .then(function(response){
+    console.log(queryURL);
+
+    console.log(response);
+
+    $(".cityUV").html("<p>UV Index: " + response.value);
+  });
+
 
   //questions to ask
   // how do we get the date, cuz when i try to use the 5 day forecast, it does it for every 3 hours
