@@ -81,9 +81,15 @@ $.ajax({
     $(".cityUV").html("<p>UV Index: " + response.value);
   });
 
+  $("#searchBtnId").click(function () {
+    console.log("clicked");
+    $(".buttonHistory").html("<p> hello");
+  });
 
   //questions to ask
   // how do we get the date, cuz when i try to use the 5 day forecast, it does it for every 3 hours
   // do we still use that or do we need to use something else?
   //
   //is the way how I have done the dates okay?
+
+  //how to add search history to html, After you enter input then press search, input should appear at the bottom.
