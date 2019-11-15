@@ -67,6 +67,32 @@ $.ajax({
     $("#day5").html("<h5>" +dd5+ "/" +mm+ "/" + yyyy);
     $("#fifthDayTemp").html("<p>Temperature (F): " + response.list[39].main.temp + "° </p>");
     $("#fifthDayHumid").html("<p>Humid: " +response.list[39].main.humidity+ "%");
+
+    $("#searchBtnId").click(function () {
+    console.log("clicked");
+    $(".buttonHistory").html("<p> hello");
+
+    var savedInput = $(this).attr("data-saveInput");
+    console.log(savedInput);
+    var textInput = $("#" + savedInput).val();
+    console.log(textInput);
+   // var textItem = $("#" + todoItem).val();
+
+   localStorage.setItem(savedInput, textInput);  
+
+   //var storageInput = JSON.parse(localStorage.getItem('textInput'));
+   $(".buttonHistory").append("<p>" + textInput);
+
+  //  var value = [textInput];
+  // localStorage.setItem("testKey", JSON.stringify(value));
+  // var test = JSON.parse(localStorage.getItem("testKey"));
+  // alert(test);
+
+    
+  });
+
+    
+
   });
 
 
@@ -81,10 +107,7 @@ $.ajax({
     $(".cityUV").html("<p>UV Index: " + response.value);
   });
 
-  $("#searchBtnId").click(function () {
-    console.log("clicked");
-    $(".buttonHistory").html("<p> hello");
-  });
+  
 
   //questions to ask
   // how do we get the date, cuz when i try to use the 5 day forecast, it does it for every 3 hours

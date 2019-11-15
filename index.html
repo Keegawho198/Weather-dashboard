@@ -25,12 +25,14 @@
       <img src="http://openweathermap.org/img/wn/10d.png"/> 
       
       <div class="input-group">
-	<input type="text" class="form-control" placeholder="Search">
+	<input type="text" class="form-control" placeholder="Search" id="savedSearch">
       <span class="input-group-btn">
-        <button class="btn btn-primary searchbtn" id="searchBtnId" type="button"><i class="fa fa-search fa-fw"></i> Search</button>
+        <button class="btn btn-primary searchbtn" id="searchBtnId" data-saveInput="savedSearch"
+         type="button"><i class="fa fa-search fa-fw"></i> Search</button>
       </span>
-      <div class="buttonHistory"></div>
 </div>
+      <div class="buttonHistory"></div>
+
 <br>
     </div>
 
