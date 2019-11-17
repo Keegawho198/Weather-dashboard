@@ -8,11 +8,15 @@ var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=melbourne&unit
 
 var queryURL_UV = "http://api.openweathermap.org/data/2.5/uvi?appid="+ APIKEY +"&lat=-37.8143&lon=144.9632";
 
+
+
 //use AJAX to call weather api
 $.ajax({
     url: queryURL, method: "Get"
   })
   .then(function(response){
+    //displayCity();
+
     console.log(queryURL);
 
     console.log(response);
@@ -28,13 +32,15 @@ $.ajax({
     var mm = today.getMonth()+1; 
     var yyyy = today.getFullYear();
 
-    var iconImg = "http:openweathermap.org/img/wn/10d.png";
-    //var iconCode = "03d";
+    //var iconCode = response.city.list[1].weather[0].icon;
+    //console.log(iconCode);//using the above code give 501 error timeout.
 
-    // var iconcode = a.weather[0].icon;
-    // var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
-    // $('#wicon').attr('src', iconurl);
-    // " + response.list[0].weather[0].icon +"
+    var iconCode = "09d";
+    console.log(iconCode);
+    var iconImg = "http:openweathermap.org/img/wn/" + iconCode+ ".png";
+    
+    //console.log(response.city.list[1].weather[0].icon); //console log this and get 504 error
+    
 
     //main data for the main city
     //$(".cityName").html("<h1>" + response.city.name + " Weather Details (" + dd + "/" + mm + "/" + yyyy + ")</h1>");
@@ -68,21 +74,53 @@ $.ajax({
     $("#fifthDayTemp").html("<p>Temperature (F): " + response.list[39].main.temp + "° </p>");
     $("#fifthDayHumid").html("<p>Humid: " +response.list[39].main.humidity+ "%");
 
+    
+
     $("#searchBtnId").click(function () {
-      console.log("clicked");
-    //   var savedInput = $(this).attr("data-saveInput");
-    //   console.log(savedInput);
-    //   var textInput = $("#" + savedInput).val();
-    //   console.log(textInput);
-    // //$(".buttonHistory").html("<p> hello");
+      // console.log("clicked");
+      // var savedInput = $(this).attr("data-saveInput");
+      // console.log(savedInput);
+      // var textInput = $("#" + savedInput).val();
+      // console.log(textInput);
+    //$(".buttonHistory").html("<p> hello");
     // var storedCity = JSON.parse(localStorage.getItem("key"));
     // storedCity.push(textInput); 
     // console.log(storedCity);
     // localStorage.setItem("key", JSON.stringify(storedCity));
 
+    var city = $("#savedSearch").val();
+    console.log(city);
 
-  //  $(".buttonHistory").prepend("<p>" + textInput);
+    if(city){
+      var savedCityAry = [];
+      savedCityAry.push(city);
+      console.log(savedCityAry);
 
+      var storedCity = localStorage.getItem("storedCity");
+
+      if(storedCity == null){
+        localStorage.setItem("storedCity", JSON.stringify(savedCityAry));
+        $("#savedSearch").val("");
+      } else{
+        storedCity = JSON.parse(storedCity);
+        storedCity.push(city);
+        localStorage.setItem("storedCity", JSON.stringify(storedCity));
+        $("savedSearch").val("");
+      }
+
+      $("#cityHistory").empty();
+      displayCity();
+    }
+
+    function displayCity(){
+      var cityFromLocalStorage = JSON.parse(localStorage.getItem("storedCity"));
+      if(cityFromLocalStorage != null){
+        for(var i=0; i<cityFromLocalStorage.length; i++){
+          var city = cityFromLocalStorage[i];
+          $("#cityHistory").append('<li>' +city+ '</li>');
+        }
+      }
+    }
  
     // Retrieve the object from storage
     
@@ -95,39 +133,6 @@ $.ajax({
       //set item to local stroage
 
 
-
-
-
-    //storedCity = JSON.parse(storedCity)
-
-   // var textItem = $("#" + todoItem).val();
-
-  // localStorage.setItem(savedInput, textInput);  
-    //var inputAry
-
-   //var storageInput = JSON.parse(localStorage.getItem('textInput'));
-
- 
-
-
-      //need to find out how to save multiple things into array
-
-    //get the value stored in that key
-  //   var inputAry = [];
-  //   inputAry.push(textInput);
-
-  //   function setJSON(key, value) {
-  //     window.localStorage.setItem(key, JSON.stringify(inputAry));
-  // }
-  // function getJSON(key) {
-  //     return JSON.parse(window.localStorage.getItem(key));
-  // }
-
-  // setJSON("Key", inputAry);
-
- // getJSON('clickedPoints');   
-
-   
     
   });
 
@@ -148,15 +153,6 @@ $.ajax({
   });
 
   
-
-  //questions to ask
-  // how do we get the date, cuz when i try to use the 5 day forecast, it does it for every 3 hours
-  // do we still use that or do we need to use something else?
-  //
-  //is the way how I have done the dates okay?
-
-  //how to add search history to html, After you enter input then press search, input should appear at the bottom.
-
 
 
  //  var value = [textInput];
