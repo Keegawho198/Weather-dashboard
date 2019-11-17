@@ -69,25 +69,65 @@ $.ajax({
     $("#fifthDayHumid").html("<p>Humid: " +response.list[39].main.humidity+ "%");
 
     $("#searchBtnId").click(function () {
-    console.log("clicked");
-    $(".buttonHistory").html("<p> hello");
+      console.log("clicked");
+    //   var savedInput = $(this).attr("data-saveInput");
+    //   console.log(savedInput);
+    //   var textInput = $("#" + savedInput).val();
+    //   console.log(textInput);
+    // //$(".buttonHistory").html("<p> hello");
+    // var storedCity = JSON.parse(localStorage.getItem("key"));
+    // storedCity.push(textInput); 
+    // console.log(storedCity);
+    // localStorage.setItem("key", JSON.stringify(storedCity));
 
-    var savedInput = $(this).attr("data-saveInput");
-    console.log(savedInput);
-    var textInput = $("#" + savedInput).val();
-    console.log(textInput);
+
+  //  $(".buttonHistory").prepend("<p>" + textInput);
+
+ 
+    // Retrieve the object from storage
+    
+    //JSON.parse the value
+
+   // add the new city to the previous key 
+
+      //JSON.stringfy the new array
+      
+      //set item to local stroage
+
+
+
+
+
+    //storedCity = JSON.parse(storedCity)
+
    // var textItem = $("#" + todoItem).val();
 
-   localStorage.setItem(savedInput, textInput);  
+  // localStorage.setItem(savedInput, textInput);  
+    //var inputAry
 
    //var storageInput = JSON.parse(localStorage.getItem('textInput'));
-   $(".buttonHistory").append("<p>" + textInput);
 
-  //  var value = [textInput];
-  // localStorage.setItem("testKey", JSON.stringify(value));
-  // var test = JSON.parse(localStorage.getItem("testKey"));
-  // alert(test);
+ 
 
+
+      //need to find out how to save multiple things into array
+
+    //get the value stored in that key
+  //   var inputAry = [];
+  //   inputAry.push(textInput);
+
+  //   function setJSON(key, value) {
+  //     window.localStorage.setItem(key, JSON.stringify(inputAry));
+  // }
+  // function getJSON(key) {
+  //     return JSON.parse(window.localStorage.getItem(key));
+  // }
+
+  // setJSON("Key", inputAry);
+
+ // getJSON('clickedPoints');   
+
+   
     
   });
 
@@ -116,3 +156,30 @@ $.ajax({
   //is the way how I have done the dates okay?
 
   //how to add search history to html, After you enter input then press search, input should appear at the bottom.
+
+
+
+ //  var value = [textInput];
+  // localStorage.setItem("testKey", JSON.stringify(value));
+  // var test = JSON.parse(localStorage.getItem("testKey"));
+  // alert(test);
+
+  // boxvalue = document.getElementById('box').value;
+  // items.push(boxvalue);  
+  // console.log(items);
+
+ 
+
+
+
+
+// var test = ["test1", "test2", "test3", "test4", "test5"];
+// localStorage.setItem("testItems", JSON.stringify(test));
+
+
+// var arr = JSON.parse(localStorage.getItem("testItems"));
+// console.log(arr);
+
+// for(var i=0; i<arr.length; i++){
+//   console.log(arr[i]);
+//}
