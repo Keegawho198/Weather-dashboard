@@ -4,9 +4,9 @@
 
 var APIKEY = "b15f97422ba66d215ee17499ebc5b83b";
 
-var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=melbourne&units=imperial&APPID=" + APIKEY;
+var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=melbourne&units=imperial&APPID=" + APIKEY;
 
-var queryURL_UV = "http://api.openweathermap.org/data/2.5/uvi?appid="+ APIKEY +"&lat=-37.8143&lon=144.9632";
+var queryURL_UV = "https://api.openweathermap.org/data/2.5/uvi?appid="+ APIKEY +"&lat=-37.8143&lon=144.9632";
 
 
 
