@@ -4,6 +4,8 @@
 
 var APIKEY = "b15f97422ba66d215ee17499ebc5b83b";
 
+//searchCity = $("#savedSearch").val();
+
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=melbourne&units=imperial&APPID=" + APIKEY;
 
 var queryURL_UV = "https://api.openweathermap.org/data/2.5/uvi?appid="+ APIKEY +"&lat=-37.8143&lon=144.9632";
@@ -15,7 +17,7 @@ $.ajax({
     url: queryURL, method: "Get"
   })
   .then(function(response){
-    //displayCity();
+    displayCity();
 
     console.log(queryURL);
 
@@ -77,16 +79,6 @@ $.ajax({
     
 
     $("#searchBtnId").click(function () {
-      // console.log("clicked");
-      // var savedInput = $(this).attr("data-saveInput");
-      // console.log(savedInput);
-      // var textInput = $("#" + savedInput).val();
-      // console.log(textInput);
-    //$(".buttonHistory").html("<p> hello");
-    // var storedCity = JSON.parse(localStorage.getItem("key"));
-    // storedCity.push(textInput); 
-    // console.log(storedCity);
-    // localStorage.setItem("key", JSON.stringify(storedCity));
 
     var city = $("#savedSearch").val();
     console.log(city);
@@ -107,36 +99,21 @@ $.ajax({
         localStorage.setItem("storedCity", JSON.stringify(storedCity));
         $("savedSearch").val("");
       }
-
+      //makes sure same text is not repeated when displayed
       $("#cityHistory").empty();
       displayCity();
     }
-
-    function displayCity(){
-      var cityFromLocalStorage = JSON.parse(localStorage.getItem("storedCity"));
-      if(cityFromLocalStorage != null){
-        for(var i=0; i<cityFromLocalStorage.length; i++){
-          var city = cityFromLocalStorage[i];
-          $("#cityHistory").append('<li>' +city+ '</li>');
-        }
-      }
-    }
- 
-    // Retrieve the object from storage
-    
-    //JSON.parse the value
-
-   // add the new city to the previous key 
-
-      //JSON.stringfy the new array
-      
-      //set item to local stroage
-
-
-    
   });
 
-    
+    function displayCity(){
+    var cityFromLocalStorage = JSON.parse(localStorage.getItem("storedCity"));
+    if(cityFromLocalStorage != null){
+      for(var i=0; i<cityFromLocalStorage.length; i++){
+        var city = cityFromLocalStorage[i];
+        $("#cityHistory").append('<li>' +city+ '</li>');
+      }
+    }
+  }
 
   });
 
