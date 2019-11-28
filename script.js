@@ -1,15 +1,50 @@
-//Api URL = http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={APIKEY}
-//Api key = b15f97422ba66d215ee17499ebc5b83b
-//api.openweathermap.org/data/2.5/weather?q=London
 
-var APIKEY = "b15f97422ba66d215ee17499ebc5b83b";
+
 
 //searchCity = $("#savedSearch").val();
 
-var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=melbourne&units=imperial&APPID=" + APIKEY;
+//var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=melbourne&units=imperial&APPID=" + APIKEY;
 
-var queryURL_UV = "https://api.openweathermap.org/data/2.5/uvi?appid="+ APIKEY +"&lat=-37.8143&lon=144.9632";
 
+$("#searchBtnId").click(function () {
+
+  var city = $("#savedSearch").val();
+  console.log(city);
+  var APIKEY = "b15f97422ba66d215ee17499ebc5b83b";
+
+  var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ city +"&units=imperial&APPID=" + APIKEY;
+
+
+  if(city){
+    var savedCityAry = [];
+    savedCityAry.push(city);
+    console.log(savedCityAry);
+
+    var storedCity = localStorage.getItem("storedCity");
+
+    if(storedCity == null){
+      localStorage.setItem("storedCity", JSON.stringify(savedCityAry));
+      $("#savedSearch").val("");
+    } else{
+      storedCity = JSON.parse(storedCity);
+      storedCity.push(city);
+      localStorage.setItem("storedCity", JSON.stringify(storedCity));
+      $("savedSearch").val("");
+    }
+    //makes sure same text is not repeated when displayed
+    $("#cityHistory").empty();
+    displayCity();
+  }
+
+  function displayCity(){
+    var cityFromLocalStorage = JSON.parse(localStorage.getItem("storedCity"));
+    if(cityFromLocalStorage != null){
+      for(var i=0; i<cityFromLocalStorage.length; i++){
+        var city = cityFromLocalStorage[i];
+        $("#cityHistory").append('<li>' +city+ '</li>');
+      }
+    }
+  }
 
 
 //use AJAX to call weather api
@@ -76,47 +111,14 @@ $.ajax({
     $("#fifthDayTemp").html("<p>Temperature (F): " + response.list[39].main.temp + "° </p>");
     $("#fifthDayHumid").html("<p>Humid: " +response.list[39].main.humidity+ "%");
 
-    
-
-    $("#searchBtnId").click(function () {
-
-    var city = $("#savedSearch").val();
-    console.log(city);
-
-    if(city){
-      var savedCityAry = [];
-      savedCityAry.push(city);
-      console.log(savedCityAry);
-
-      var storedCity = localStorage.getItem("storedCity");
-
-      if(storedCity == null){
-        localStorage.setItem("storedCity", JSON.stringify(savedCityAry));
-        $("#savedSearch").val("");
-      } else{
-        storedCity = JSON.parse(storedCity);
-        storedCity.push(city);
-        localStorage.setItem("storedCity", JSON.stringify(storedCity));
-        $("savedSearch").val("");
-      }
-      //makes sure same text is not repeated when displayed
-      $("#cityHistory").empty();
-      displayCity();
-    }
-  });
-
-    function displayCity(){
-    var cityFromLocalStorage = JSON.parse(localStorage.getItem("storedCity"));
-    if(cityFromLocalStorage != null){
-      for(var i=0; i<cityFromLocalStorage.length; i++){
-        var city = cityFromLocalStorage[i];
-        $("#cityHistory").append('<li>' +city+ '</li>');
-      }
-    }
-  }
 
   });
+});
 
+var APIKEY = "b15f97422ba66d215ee17499ebc5b83b";
+
+
+var queryURL_UV = "https://api.openweathermap.org/data/2.5/uvi?appid="+ APIKEY +"&lat=-37.8143&lon=144.9632";
 
   $.ajax({
     url: queryURL_UV, method: "Get"
@@ -129,30 +131,3 @@ $.ajax({
     $(".cityUV").html("<p>UV Index: " + response.value);
   });
 
-  
-
-
- //  var value = [textInput];
-  // localStorage.setItem("testKey", JSON.stringify(value));
-  // var test = JSON.parse(localStorage.getItem("testKey"));
-  // alert(test);
-
-  // boxvalue = document.getElementById('box').value;
-  // items.push(boxvalue);  
-  // console.log(items);
-
- 
-
-
-
-
-// var test = ["test1", "test2", "test3", "test4", "test5"];
-// localStorage.setItem("testItems", JSON.stringify(test));
-
-
-// var arr = JSON.parse(localStorage.getItem("testItems"));
-// console.log(arr);
-
-// for(var i=0; i<arr.length; i++){
-//   console.log(arr[i]);
-//}
