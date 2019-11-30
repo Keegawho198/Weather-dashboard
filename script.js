@@ -58,8 +58,9 @@ $("#searchBtnId").click(function () {
 
       console.log(response);
 
-      // var today = new Date();
+      //will the date using the api
       var dt = response.list[1].dt_txt;
+      //will shorten the string in the array in the api
       dT = dt.substring(0, dt.length - 8);
 
       var dayDate1 = response.list[9].dt_txt;
@@ -105,19 +106,31 @@ $("#searchBtnId").click(function () {
       $("#firstDayTemp").html("<p>Temperature (F): " + response.list[9].main.temp + "° </p>");
       $("#firstDayHumid").html("<p>Humidity: " + response.list[9].main.humidity + "%");
 
+      var iconCode2 = response.list[17].weather[0].icon;
+      var iconImg2 = "http:openweathermap.org/img/wn/" + iconCode2 + ".png";
       $("#day2").html("<h5>" + dd2);
+      $("#secondDayIcon").html("<img src =" + iconImg2 + ">");
       $("#secondDayTemp").html("<p>Temperature (F): " + response.list[17].main.temp + "° </p>");
       $("#secondDayHumid").html("<p>Humidity: " + response.list[17].main.humidity + "%");
 
+      var iconCode3 = response.list[25].weather[0].icon;
+      var iconImg3 = "http:openweathermap.org/img/wn/" + iconCode3 + ".png";
       $("#day3").html("<h5>" + dd3);
+      $("#thirdDayIcon").html("<img src =" + iconImg3 + ">");
       $("#thirdDayTemp").html("<p>Temperature (F): " + response.list[25].main.temp + "° </p>");
       $("#thirdDayHumid").html("<p>Humidity: " + response.list[25].main.humidity + "%");
 
+      var iconCode4 = response.list[33].weather[0].icon;
+      var iconImg4 = "http:openweathermap.org/img/wn/" + iconCode4 + ".png";
       $("#day4").html("<h5>" + dd4);
+      $("#fourthDayIcon").html("<img src =" + iconImg4 + ">");
       $("#fourthDayTemp").html("<p>Temperature (F): " + response.list[33].main.temp + "° </p>");
       $("#fourthDayHumid").html("<p>Humid: " + response.list[33].main.humidity + "%");
 
+      var iconCode5 = response.list[39].weather[0].icon;
+      var iconImg5 = "http:openweathermap.org/img/wn/" + iconCode5 + ".png";
       $("#day5").html("<h5>" + dd5);
+      $("#fifthDayIcon").html("<img src =" + iconImg5 + ">");
       $("#fifthDayTemp").html("<p>Temperature (F): " + response.list[39].main.temp + "° </p>");
       $("#fifthDayHumid").html("<p>Humid: " + response.list[39].main.humidity + "%");
 
