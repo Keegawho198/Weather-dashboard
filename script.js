@@ -1,10 +1,7 @@
-
-
-
 //searchCity = $("#savedSearch").val();
 
 //var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=melbourne&units=imperial&APPID=" + APIKEY;
-
+// displayCity();
 
 $("#searchBtnId").click(function () {
 
@@ -34,6 +31,8 @@ $("#searchBtnId").click(function () {
     //makes sure same text is not repeated when displayed
     $("#cityHistory").empty();
     displayCity();
+  }else{
+    alert("enter something")
   }
 
   function displayCity(){
@@ -42,6 +41,7 @@ $("#searchBtnId").click(function () {
       for(var i=0; i<cityFromLocalStorage.length; i++){
         var city = cityFromLocalStorage[i];
         $("#cityHistory").append('<li>' +city+ '</li>');
+        
       }
     }
   }
