@@ -1,7 +1,7 @@
 //searchCity = $("#savedSearch").val();
 
 //var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=melbourne&units=imperial&APPID=" + APIKEY;
-// displayCity();
+//displayCity();
 
 $("#searchBtnId").click(function () {
 
@@ -59,7 +59,9 @@ $.ajax({
     console.log(response);
 
     var today = new Date();
-    var dd = today.getDate();
+    var dt = response.list[1].dt_txt
+    dT =dt.substring(0, dt.length - 8);
+
     var dd1 = today.getDate()+1; //for next day after current day
     var dd2 = today.getDate()+2;
     var dd3 = today.getDate()+3;
@@ -81,12 +83,11 @@ $.ajax({
 
     //main data for the main city
     //$(".cityName").html("<h1>" + response.city.name + " Weather Details (" + dd + "/" + mm + "/" + yyyy + ")</h1>");
-    $(".cityName").html("<h1>" + response.city.name + response.list[1].dt_txt + "<img src =" + iconImg + ">");
+    $(".cityName").html("<h1>" + response.city.name+ " " + dT + "<img src =" + iconImg + ">");
 
     $(".cityTemp").html("<p> Temperature (F): " + response.list[1].main.temp +"°")
     $(".cityHumid").html("<p> Humidity: " + response.list[1].main.humidity + "%");
     $(".cityWind").html("<p> Wind Speed: " + response.list[1].wind.speed + " MPH</p>")
-
 
     //dates for the five day forecase
     //each list array is for the different days as this api does the weather for every 3 hours
